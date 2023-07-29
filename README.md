@@ -52,7 +52,11 @@ We need now to setup ingress for our container as we are using a FAST API app th
    
    <img src="https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/2add5849-7557-4ac4-8a21-1e01f33fbf76" width=50% height=50%>
 
-3. Change CPU and RAM settings
+3. Change CPU and RAM settings and click on `save`
 
    <img src="https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/54a8b9ee-6f6d-4b2a-b780-105cccf36bd4" width=50% height=50%>
+
+if you go back to the containers tab you can see that the settings of the container have changed
+
+<img src="https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/347489ef-3cc7-4710-9c10-b6ac3fc470b2" width=50% height=50%>
 
