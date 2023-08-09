@@ -2,7 +2,7 @@ name: Trigger auto deployment for textgeneration app
 
 env:
   AZURE_CONTAINER_APP_NAME: textgeneration
-  AZURE_GROUP_NAME: hugginface
+  AZURE_GROUP_NAME: huggingface
 
 # When this action will be executed
 on:
