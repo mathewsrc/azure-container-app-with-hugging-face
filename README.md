@@ -137,7 +137,7 @@ if you go back to the containers tab you can see that the settings of the contai
 
 <img src="https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/347489ef-3cc7-4710-9c10-b6ac3fc470b2" width=50% height=50%>
 
-After we setup the container app we can update the GitHub Actions Yaml file with the container app name and group name:
+After we set up the container app we can update the GitHub Actions Yaml file with the container app name and group name:
 ```Yaml
 env:
   AZURE_CONTAINER_APP_NAME: textgeneration
@@ -150,4 +150,54 @@ env:
             az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --cpu 2 --memory 4Gi
             az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --image textgeneration.azurecr.io/mathewsrc/azure-container-app-with-hugging-face:${{ github.sha }}
 ```
+
+## GitHub Actions manual trigger
+
+We can disable GitHub Actions auto CI/CD by modifying the Yaml file
+
+```Yaml
+on:
+  # Automatically trigger it when detected changes in repo. Remove comments to enable
+  #push:
+  #  branches: 
+  #    [ main ]
+
+  # Allow manual trigger 
+  workflow_dispatch:
+```
+
+Then we can go to the GitHub Actions tab and trigger our app CI/CD workflow
+
+![manually_trigger_actions](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/f23bf1fd-839d-4140-800f-b9667fd2c2d8)
+
+Running
+
+![actions_jobs](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/9045cc2b-7872-4ae6-b119-585737171161)
+
+Complete
+
+![actions_status](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/496ddecc-515e-4e08-9b0b-9706c5794d11)
+
+Then we can go back to Azure Container App and open the application URL
+
+![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/ae4d06e0-d518-4a96-bf2f-4eebc18347e1)
+
+App Home
+
+![home](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/82e59856-4f1b-4740-99cb-f793360b395f)
+
+POST request
+
+First, add docs at the end of the URL to open FASTAPI
+
+![how_to_open_fastapi](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/74d82fe2-ce10-4ff3-b702-b84927d122e1)
+
+Finally, we can call the Hugging Face model
+
+![generate_post](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/de1f8609-b15c-4db8-8784-648bfbf8ecc7)
+
+Result
+
+![generate_result](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/676502e3-cb85-46df-8ab2-46a7d9d59a85)
+
 
