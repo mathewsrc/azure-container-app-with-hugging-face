@@ -3,6 +3,11 @@ Project: Create an Azure Container Application with a Hugging Face model for tex
 
 This project is one of the projects of the [*MLOps | Machine Learning Operations*](https://www.coursera.org/specializations/mlops-machine-learning-duke) course available on Coursera. I really recommend this course if you are interested in the MLOps field or Machine Learning Engineering using the most up-to-date tools and best practices.
 
+Instructors GitHub link:
+
+https://github.com/alfredodeza
+https://github.com/noahgift
+
 
 ## What is Azure Container App
 
