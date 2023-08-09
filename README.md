@@ -13,6 +13,23 @@ Azure Container App has the following features included:
 * Revisions
 * Monitoring
 
+## Creating a container registry
+
+![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/267ee9f9-4230-4695-ae44-1ef7c977840b)
+
+![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/2195272a-803b-4504-95f9-cd59f995122f)
+
+![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/c67be428-2cba-43ae-9a2a-972701768ab0)
+
+![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/37d64e2a-e4ef-4f61-bf52-163afdd6b43b)
+
+![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/905f9779-7bf2-4342-acad-b0a9b33d7f0d)
+
+![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/10fe4925-d6f1-4c67-94c6-fe86f5768707)
+
+
+
+
 ## Creating a new container app
 
 In order to create the container we need to follow the steps below:
