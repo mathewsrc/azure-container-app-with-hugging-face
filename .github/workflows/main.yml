@@ -54,7 +54,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-
       - name: Deploy to Azure Container App
         uses: azure/CLI@v1
         with:
