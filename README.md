@@ -17,6 +17,19 @@ Azure Container App has the following features included:
 
 We can use up to 300 applications replicas that'll be deployed in response to a trigger event. We can also use scale rules to determine the type of events that trigger scaling, i.e HTTP concurrent requests and Azure queue
 
+## Use the Azure login action with a service principal secret
+
+One requirement for this project is to create an Azure Service Principal that will permit connecting GitHub to Azure Portal
+
+ 1. Copy your subscription ID. You can find your in this [link](https://portal.azure.com/#view/Microsoft_Azure_Billing/SubscriptionsBlade)
+ 2. Open Azure Cloud Shell in the Azure portal or Azure CLI locally.
+    ```bash
+    AZURE_SUBSCRIPTION_ID=PASTE_YOUR_SUBSCRIPTION_ID_HERE
+    az ad sp create-for-rbac --name "CICD" --role contributor --scopes /subscriptions/$AZURE_SUBSCRIPTION_ID  --json-auth
+    ```
+3. Copy the JSON object and save it for now
+   
+
 ## Creating a container registry
 
 ![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/267ee9f9-4230-4695-ae44-1ef7c977840b)
@@ -31,7 +44,8 @@ We can use up to 300 applications replicas that'll be deployed in response to a 
 
 ![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/10fe4925-d6f1-4c67-94c6-fe86f5768707)
 
-GitHub Actions secrets
+
+## GitHub Actions secrets
 
 ![secrets_variables](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/7283e870-98d9-445a-be2e-950ee0c986f2)
 
@@ -40,6 +54,11 @@ GitHub Actions secrets
 ![acr_username](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/839d0947-e5e7-400c-bfa8-97c45d625bcb)
 
 ![secrets](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/931e998c-21d4-46aa-818b-50feb05d64cd)
+
+We need to create a last secret for the Azure JSON object that we saved before. I named my secret as AZURE_CREDENTIALS.
+
+![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/0b978432-17b9-4c99-aa83-447b2b7cccb4)
+
 
 ## Creating a new container app
 
