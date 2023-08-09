@@ -1,0 +1,65 @@
+name: Trigger auto deployment for textgeneration app
+
+env:
+  AZURE_CONTAINER_APP_NAME: textgeneration
+  AZURE_GROUP_NAME: hugginface
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo. Remove comments to enable
+  #push:
+  #  branches: 
+  #    [ main ]
+
+  # Allow mannually trigger 
+  workflow_dispatch:      
+
+# Continuous Integration - push code to Azure Container Registry
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to Azure container registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: generatetext.azurecr.io # Registry, i.e Docker Registry (ghcr.io), Azure Registry (azurecr.io)
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Lowercase the repo name and username
+        run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
+      - name: Build and push container image to ACR registry
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: generatetext.azurecr.io/${{ env.REPO }}:${{ github.sha }}
+          file: ./Dockerfile
+
+  # Continuous deployment - deploy app to Azure Container App
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+
+      - name: Deploy to Azure Container App
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az config set extension.use_dynamic_install=yes_without_prompt
+            az containerapp registry set -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --server matheusrc.azurecr.io --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --cpu 2 --memory 4Gi
+            az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --image matheusrc.azurecr.io/matheus/huggingface-azure-acr:${{ github.sha }}
