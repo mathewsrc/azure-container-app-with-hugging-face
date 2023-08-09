@@ -46,6 +46,18 @@ For more information check this [link](https://learn.microsoft.com/en-us/azure/d
 
 ![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/10fe4925-d6f1-4c67-94c6-fe86f5768707)
 
+![registry_repositories](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/242e5f9f-c795-4ff5-8997-840d576ed450)
+
+Below you can check your container image name. We need to use this name in the GitHub Action Yaml file.
+
+```
+az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --image textgeneration.azurecr.io/mathewsrc/azure-container-app-with-hugging-face:${{ github.sha }}
+```
+
+![repository_name](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/bbb02ce8-ad90-42bf-ae59-9432f4ea875b)
+
+
+
 
 ## GitHub Actions secrets
 
@@ -60,6 +72,22 @@ For more information check this [link](https://learn.microsoft.com/en-us/azure/d
 We need to create a last secret for the Azure JSON object that we saved before. I named my secret as AZURE_CREDENTIALS.
 
 ![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/0b978432-17b9-4c99-aa83-447b2b7cccb4)
+
+Then we can use the AZURE_CREDENTIALS, PASSWORD and USERNAME in GitHub Actions Yaml file:
+```Yaml
+steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+```
+
+```Yaml
+with:
+          registry: textgeneration.azurecr.io # Registry, i.e Docker Registry (ghcr.io), Azure Registry (azurecr.io)
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+```
 
 
 ## Creating a new container app
@@ -108,4 +136,18 @@ We need now to setup ingress for our container as we are using a FAST API app th
 if you go back to the containers tab you can see that the settings of the container have changed
 
 <img src="https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/347489ef-3cc7-4710-9c10-b6ac3fc470b2" width=50% height=50%>
+
+After we setup the container app we can update the GitHub Actions Yaml file with the container app name and group name:
+```Yaml
+env:
+  AZURE_CONTAINER_APP_NAME: textgeneration
+  AZURE_GROUP_NAME: huggingface
+```
+
+```Yaml
+ az config set extension.use_dynamic_install=yes_without_prompt
+            az containerapp registry set -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --server textgeneration.azurecr.io --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --cpu 2 --memory 4Gi
+            az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --image textgeneration.azurecr.io/mathewsrc/azure-container-app-with-hugging-face:${{ github.sha }}
+```
 
