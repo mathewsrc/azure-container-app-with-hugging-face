@@ -1,5 +1,5 @@
 # azure-container-app-with-hugging-face
-Project: Create an Azure Container App with Databricks
+Project: Create an Azure Container Application with a Hugging Face model for text generation
 
 
 What is Azure Container App
