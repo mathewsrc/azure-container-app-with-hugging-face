@@ -17,6 +17,15 @@ Azure Container App has the following features included:
 
 We can use up to 300 applications replicas that'll be deployed in response to a trigger event. We can also use scale rules to determine the type of events that trigger scaling, i.e HTTP concurrent requests and Azure queue
 
+What is Azure Container Registry
+
+Azure Container Registry (ACR) is a fully managed private Docker registry service provided by Microsoft Azure. It stores and manages container images. 
+
+Some features of ACR:
+
+* Geo-replication: scale across multiple regions
+* Can automatically build, test, push, and deploy images to Azure with Azure Container Registry Tasks
+
 ## Use the Azure login action with a service principal secret
 
 One requirement for this project is to create an Azure Service Principal that will permit connecting GitHub to Azure Portal
@@ -63,7 +72,6 @@ az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_G
 ```
 
 <img src="https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/bbb02ce8-ad90-42bf-ae59-9432f4ea875b" width=50% height=50%>
-
 
 
 
@@ -174,7 +182,7 @@ on:
   workflow_dispatch:
 ```
 
-Then we can go to the GitHub Actions tab and trigger our app CI/CD workflow
+### Then we can go to the GitHub Actions tab and trigger our app CI/CD workflow
 
 <img src="https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/f23bf1fd-839d-4140-800f-b9667fd2c2d8" width=50% height=50%>
 
@@ -190,11 +198,11 @@ Then we can go back to Azure Container App and open the application URL
 
 <img src="https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/ae4d06e0-d518-4a96-bf2f-4eebc18347e1" width=50% height=50%>
 
-App Home
+### App Home
 
 <img src="https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/82e59856-4f1b-4740-99cb-f793360b395f" width=50% height=50%>
 
-POST request
+### POST request
 
 First, add docs at the end of the URL to open FASTAPI
 
