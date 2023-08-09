@@ -2,7 +2,7 @@
 Project: Create an Azure Container Application with a Hugging Face model for text generation
 
 
-What is Azure Container App
+## What is Azure Container App
 
 Serverless infrastructure for deployments. We can easily deploy with scaling a HuggingFace machine-learning model 
 
@@ -17,7 +17,7 @@ Azure Container App has the following features included:
 
 We can use up to 300 applications replicas that'll be deployed in response to a trigger event. We can also use scale rules to determine the type of events that trigger scaling, i.e HTTP concurrent requests and Azure queue
 
-What is Azure Container Registry
+## What is Azure Container Registry
 
 Azure Container Registry (ACR) is a fully managed private Docker registry service provided by Microsoft Azure. It stores and manages container images. 
 
