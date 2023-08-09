@@ -29,7 +29,7 @@ jobs:
       - name: Log in to Azure container registry
         uses: docker/login-action@v1.10.0
         with:
-          registry: generatetext.azurecr.io # Registry, i.e Docker Registry (ghcr.io), Azure Registry (azurecr.io)
+          registry: textgeneration.azurecr.io # Registry, i.e Docker Registry (ghcr.io), Azure Registry (azurecr.io)
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
@@ -40,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: generatetext.azurecr.io/${{ env.REPO }}:${{ github.sha }}
+          tags: textgeneration.azurecr.io/${{ env.REPO }}:${{ github.sha }}
           file: ./Dockerfile
 
   # Continuous deployment - deploy app to Azure Container App
@@ -59,6 +59,6 @@ jobs:
         with:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
-            az containerapp registry set -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --server generatetext.azurecr.io --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            az containerapp registry set -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --server textgeneration.azurecr.io --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
             az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --cpu 2 --memory 4Gi
-            az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --image generatetext.azurecr.io/matheus/huggingface-azure-acr:${{ github.sha }}
+            az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_GROUP_NAME }} --image textgeneration.azurecr.io/matheus/huggingface-azure-acr:${{ github.sha }}
