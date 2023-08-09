@@ -28,6 +28,8 @@ One requirement for this project is to create an Azure Service Principal that wi
     az ad sp create-for-rbac --name "CICD" --role contributor --scopes /subscriptions/$AZURE_SUBSCRIPTION_ID  --json-auth
     ```
 3. Copy the JSON object and save it for now
+
+For more information check this [link](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)
    
 
 ## Creating a container registry
