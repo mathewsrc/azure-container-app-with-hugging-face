@@ -13,6 +13,10 @@ Azure Container App has the following features included:
 * Revisions
 * Monitoring
 
+### Auto-Scaling Azure Container App
+
+We can use up to 300 applications replicas that'll be deployed in response to a trigger event. We can also use scale rules to determine the type of events that trigger scaling, i.e HTTP concurrent requests and Azure queue
+
 ## Creating a container registry
 
 ![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/267ee9f9-4230-4695-ae44-1ef7c977840b)
