@@ -5,7 +5,12 @@ This project is one of the projects of the [*MLOps | Machine Learning Operations
 
 Instructors GitHub link:
 
+Alfredo Deza
+
 https://github.com/alfredodeza
+
+Noah Gift 
+
 https://github.com/noahgift
 
 
