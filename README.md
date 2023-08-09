@@ -27,8 +27,15 @@ Azure Container App has the following features included:
 
 ![image](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/10fe4925-d6f1-4c67-94c6-fe86f5768707)
 
+GitHub Actions secrets
 
+![secrets_variables](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/7283e870-98d9-445a-be2e-950ee0c986f2)
 
+![creating_secret](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/cb36d85d-94c4-4cd1-baf6-619c783da21b)
+
+![acr_username](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/839d0947-e5e7-400c-bfa8-97c45d625bcb)
+
+![secrets](https://github.com/mathewsrc/azure-container-app-with-hugging-face/assets/94936606/931e998c-21d4-46aa-818b-50feb05d64cd)
 
 ## Creating a new container app
 
